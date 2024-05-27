@@ -1,19 +1,24 @@
 .fruit-counter__container {
-    background-color: #fff;
+    background-color: #498D8E;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    max-width: 400px;
+    max-width: 600px;
     width: 100%;
-    padding: 10px 20px;
+    padding: 20px;
+    margin: 20px;
 }
 
+.fruit-counter__container h3 {
+    font-size: 28px;
+    color: #CB8801;
+}
 
 .fruit-counter {
-    border: 1px solid #333333;
+    border: 2px solid #CB8801;
     border-radius: 4px;
     padding: 16px;
-    margin-bottom: 20px;
+    margin: 20px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,25 +37,61 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    padding: 10px 20px;
     margin: 0 5px;
 }
 
 .button__minus {
-    background-color: #f54542;
+    background-color: #E54D4D;
     margin-right: 10px;
+    padding: 10px;
 }
 
 .button__plus {
-    background-color: #4CAF50;
+    background-color: #45AC5F;
     margin-left: 10px;
+    padding: 10px;
 }
 
-.button__reset {
-    background-color: #94908f;
+.button__default {
+    background-color: #CB8801;
+    padding: 10px 20px;
 }
 
 .button:disabled {
     background-color: #ddd;
     cursor: not-allowed;
+}
+
+form {
+    background-color: #498D8E;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    margin: 20px;
+}
+
+form section {
+    text-align: left;
+    margin: 15px;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select,
+form textarea {
+    background-color: #CB8801;
+    opacity: 0.9;
+    border-radius: 4px;
+    width: 95%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+form input[type="checkbox"] + label,
+form input[type="radio"] + label {
+    display: inline-block;
+    margin: 0 20px 0 10px;
 }
