@@ -1,0 +1,56 @@
+.fruit-counter__container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+
+.fruit-counter {
+    border: 1px solid #333333;
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fruit-counter__wrapper {
+    margin: 0 10px;
+}
+
+.fruit-counter h2 {
+    margin: 0 auto;
+}
+
+.button {
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 0 5px;
+}
+
+.button__minus {
+    background-color: #f54542;
+    margin-right: 10px;
+}
+
+.button__plus {
+    background-color: #4CAF50;
+    margin-left: 10px;
+}
+
+.button__reset {
+    background-color: #94908f;
+}
+
+.button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
