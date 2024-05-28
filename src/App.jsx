@@ -1,5 +1,7 @@
 import {useState} from "react";
 import './App.css'
+import Button from './components/Button/Button.jsx'
+import FruitCounter from "./components/FruitCounter/FruitCounter.jsx";
 
 function App() {
   const [bananas, setBananas] = useState(0);
@@ -40,67 +42,28 @@ function App() {
   return (
     <>
         <h1>Fruitmand bezorgservice</h1>
-        <section className="fruit-counter__container">
+        <section className="outer-content__container fruit-counter__section">
             <h3>Vul je fruitmand:</h3>
             <article className="fruit-counter">
                 <h2>🍌 Bananen</h2>
-                <span className="fruit-counter__wrapper">
-                    <button type="button" disabled={bananas === 0} onClick={() => setBananas(bananas - 1)}
-                            className="button button__minus">
-                        ➖
-                    </button>
-                    {bananas}
-                    <button type="button" onClick={() => setBananas(bananas + 1)} className="button button__plus">
-                        ➕
-                    </button>
-                </span>
+                <FruitCounter fruit={bananas} setFruit={setBananas}/>
             </article>
             <article className="fruit-counter">
                 <h2>🍓 Aardbeien</h2>
-                <span className="fruit-counter__wrapper">
-                    <button type="button" disabled={strawberries === 0}
-                            onClick={() => setStrawberries(strawberries - 1)} className="button button__minus">
-                        ➖
-                    </button>
-                    {strawberries}
-                    <button type="button" onClick={() => setStrawberries(strawberries + 1)}
-                            className="button button__plus">
-                        ➕
-                    </button>
-                </span>
+                <FruitCounter fruit={strawberries} setFruit={setStrawberries}/>
             </article>
             <article className="fruit-counter">
                 <h2>🍏 Appels</h2>
-                <span className="fruit-counter__wrapper">
-                    <button type="button" disabled={apples === 0} onClick={() => setApples(apples - 1)}
-                            className="button button__minus">
-                        ➖
-                    </button>
-                    {apples}
-                    <button type="button" onClick={() => setApples(apples + 1)} className="button button__plus">
-                        ➕
-                    </button>
-                </span>
+                <FruitCounter fruit={apples} setFruit={setApples}/>
             </article>
             <article className="fruit-counter">
                 <h2>🥝 Kiwi's</h2>
-                <span className="fruit-counter__wrapper">
-                    <button type="button" disabled={kiwis === 0} onClick={() => setKiwis(kiwis - 1)}
-                            className="button button__minus">
-                        ➖
-                    </button>
-                    {kiwis}
-                    <button type="button" onClick={() => setKiwis(kiwis + 1)} className="button button__plus">
-                        ➕
-                    </button>
-                </span>
+                <FruitCounter fruit={kiwis} setFruit={setKiwis}/>
             </article>
-            <button type="button" onClick={() => resetFruits()} className="button button__default">
-                Reset
-            </button>
+            <Button type="button" clickHandler={resetFruits} className="button button__default" text="Reset"/>
         </section>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="outer-content__container">
             <section>
                 <label htmlFor="firstname-field">Voornaam</label>
                 <input
@@ -196,7 +159,7 @@ function App() {
                 <label htmlFor="agree-field">Ik ga akkoord met de voorwaarden</label>
             </section>
 
-            <button type="submit" className="button button__default">Verzend</button>
+            <Button type="submit" className="button button__default" text="Verzenden"/>
         </form>
     </>
   )
