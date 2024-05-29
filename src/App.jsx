@@ -2,6 +2,7 @@ import {useState} from "react";
 import './App.css'
 import Button from './components/Button/Button.jsx'
 import FruitCounter from "./components/FruitCounter/FruitCounter.jsx";
+import InputField from "./components/InputField/InputField.jsx";
 
 function App() {
   const [bananas, setBananas] = useState(0);
@@ -9,14 +10,26 @@ function App() {
   const [apples, setApples] = useState(0);
   const [kiwis, setKiwis] = useState(0);
 
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [age, setAge] = useState(0);
-  const [zipcode, setZipcode] = useState('');
-  const [deliveryFrequency, toggleDeliveryFrequency] = useState('week');
-  const [deliveryTimeslot, toggleDeliveryTimeslot] = useState('daytime');
-  const [comment, setComment] = useState('');
-  const [agreeTerms, toggleAgreeTerms] = useState(false);
+  const [formState, setFormState] = useState({
+      firstname: '',
+      lastname: '',
+      age: 0,
+      zipcode: '',
+      deliveryFrequency: 'week',
+      deliveryTimeslot: 'daytime',
+      comment: '',
+      agreeTerms: false,
+  })
+
+  function handleFormChange(e) {
+      const inputName = e.target.name;
+      const inputValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+
+      setFormState({
+          ...formState,
+          [inputName]: inputValue,
+      })
+  }
 
   function resetFruits () {
       setBananas(0);
@@ -25,19 +38,11 @@ function App() {
       setKiwis(0);
   }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        console.log(`
-    Voornaam: ${firstname}, 
-    Achternaam: ${lastname}, 
-    Leeftijd: ${age}, 
-    Postcode: ${zipcode}, 
-    Bezorgfrequentie: ${deliveryFrequency},
-    Opmerkingen: ${comment},
-    Algemene voorwaarden: ${agreeTerms}
-    `);
-        console.log(`Fruitmand bestelling - bananen: ${bananas}, aardbeiden: ${strawberries}, appels: ${apples}, kiwi's: ${kiwis}`);
-    }
+  function handleSubmit(e) {
+      e.preventDefault();
+      console.log(formState);
+      console.log(`Fruitmand bestelling - bananen: ${bananas}, aardbeiden: ${strawberries}, appels: ${apples}, kiwi's: ${kiwis}`);
+  }
 
   return (
     <>
@@ -65,52 +70,28 @@ function App() {
 
         <form onSubmit={handleSubmit} className="outer-content__container">
             <section>
-                <label htmlFor="firstname-field">Voornaam</label>
-                <input
-                    name="firstname"
-                    id="firstname-field"
-                    type="text"
-                    value={firstname}
-                    onChange={(e) => setFirstname(e.target.value)}
-                />
+                <InputField id="firstname-field" name="firstname" label="Voornaam" type="text" value={formState.firstname}
+                            changeHandler={handleFormChange}/>
             </section>
             <section>
-                <label htmlFor="lastname-field">Achternaam</label>
-                <input
-                    name="lastname"
-                    id="lastname-field"
-                    type="text"
-                    value={lastname}
-                    onChange={(e) => setLastname(e.target.value)}
-                />
+                <InputField id="lastname-field" name="lastname" label="Achternaam" type="text" value={formState.lastname}
+                            changeHandler={handleFormChange}/>
             </section>
             <section>
-                <label htmlFor="age-field">Leeftijd</label>
-                <input
-                    name="age"
-                    id="age-field"
-                    type="number"
-                    value={age}
-                    onChange={(e) => setAge(e.target.value)}
-                />
+                <InputField id="age-field" name="age" label="Leeftijd" type="number" value={formState.age}
+                            changeHandler={handleFormChange}/>
             </section>
             <section>
-                <label htmlFor="zipcode-field">Postcode</label>
-                <input
-                    name="zipcode"
-                    id="zipcode-field"
-                    type="text"
-                    value={zipcode}
-                    onChange={(e) => setZipcode(e.target.value)}
-                />
+                <InputField id="zipcode-field" name="zipcode" label="Postcode" type="text" value={formState.zipcode}
+                            changeHandler={handleFormChange}/>
             </section>
             <section>
                 <label htmlFor="delivery-field">Bezorgfrequentie</label>
                 <select
                     name="delivery"
                     id="delivery-field"
-                    value={deliveryFrequency}
-                    onChange={(e) => toggleDeliveryFrequency(e.target.value)}
+                    value={formState.deliveryFrequency}
+                    onChange={handleFormChange}
                 >
                     <option value="week">Iedere week</option>
                     <option value="two-week">Om de week</option>
@@ -123,15 +104,15 @@ function App() {
                     value="daytime"
                     name="timeslot"
                     id="timeslot-field-daytime"
-                    checked={deliveryTimeslot === 'daytime'}
-                    onChange={(e) => toggleDeliveryTimeslot(e.target.value)}
+                    checked={formState.deliveryTimeslot === 'daytime'}
+                    onChange={handleFormChange}
                 />
                 <label htmlFor="timeslot-field-daytime">Overdag</label>
                 <input
                     type="radio"
                     value="evening"
-                    checked={deliveryTimeslot === 'evening'}
-                    onChange={(e) => toggleDeliveryTimeslot(e.target.value)}
+                    checked={formState.deliveryTimeslot === 'evening'}
+                    onChange={handleFormChange}
                     name="timeslot"
                     id="timeslot-field-evening"
                 />
@@ -142,8 +123,8 @@ function App() {
                 <textarea
                     name="comment"
                     id="comment-field"
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
+                    value={formState.comment}
+                    onChange={handleFormChange}
                     rows={6}
                     cols={40}
                 />
@@ -153,8 +134,8 @@ function App() {
                     type="checkbox"
                     name="agree"
                     id="agree-field"
-                    value={agreeTerms}
-                    onChange={(e) => toggleAgreeTerms(e.target.checked)}
+                    value={formState.agreeTerms}
+                    onChange={handleFormChange}
                 />
                 <label htmlFor="agree-field">Ik ga akkoord met de voorwaarden</label>
             </section>

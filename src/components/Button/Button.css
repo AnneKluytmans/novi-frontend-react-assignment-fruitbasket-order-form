@@ -12,8 +12,14 @@
     padding: 10px;
 }
 
-.button__plus {
+.button__plus--active {
     background-color: #45AC5F;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.button__plus--default {
+    background-color: #ddd;
     margin-left: 10px;
     padding: 10px;
 }
