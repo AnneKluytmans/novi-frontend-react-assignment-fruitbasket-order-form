@@ -1,8 +1,8 @@
 import {useState} from "react";
-import './App.css'
 import Button from './components/Button/Button.jsx'
 import FruitCounter from "./components/FruitCounter/FruitCounter.jsx";
 import InputField from "./components/InputField/InputField.jsx";
+import './App.css'
 
 function App() {
   const [bananas, setBananas] = useState(0);
@@ -22,12 +22,12 @@ function App() {
   })
 
   function handleFormChange(e) {
-      const inputName = e.target.name;
-      const inputValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+      const inputFieldName = e.target.name;
+      const inputFieldValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 
       setFormState({
           ...formState,
-          [inputName]: inputValue,
+          [inputFieldName]: inputFieldValue,
       })
   }
 
@@ -86,10 +86,10 @@ function App() {
                             changeHandler={handleFormChange}/>
             </section>
             <section>
-                <label htmlFor="delivery-field">Bezorgfrequentie</label>
+                <label htmlFor="delivery-frequency-field">Bezorgfrequentie</label>
                 <select
-                    name="delivery"
-                    id="delivery-field"
+                    name="deliveryFrequency"
+                    id="delivery-frequency-field"
                     value={formState.deliveryFrequency}
                     onChange={handleFormChange}
                 >
@@ -102,7 +102,7 @@ function App() {
                 <input
                     type="radio"
                     value="daytime"
-                    name="timeslot"
+                    name="deliveryTimeslot"
                     id="timeslot-field-daytime"
                     checked={formState.deliveryTimeslot === 'daytime'}
                     onChange={handleFormChange}
@@ -113,7 +113,7 @@ function App() {
                     value="evening"
                     checked={formState.deliveryTimeslot === 'evening'}
                     onChange={handleFormChange}
-                    name="timeslot"
+                    name="deliveryTimeslot"
                     id="timeslot-field-evening"
                 />
                 <label htmlFor="timeslot-field-evening">'s Avonds</label>
@@ -132,12 +132,12 @@ function App() {
             <section>
                 <input
                     type="checkbox"
-                    name="agree"
-                    id="agree-field"
+                    name="agreeTerms"
+                    id="agree-terms-field"
                     value={formState.agreeTerms}
                     onChange={handleFormChange}
                 />
-                <label htmlFor="agree-field">Ik ga akkoord met de voorwaarden</label>
+                <label htmlFor="agree-terms-field">Ik ga akkoord met de voorwaarden</label>
             </section>
 
             <Button type="submit" className="button button__default" text="Verzenden"/>

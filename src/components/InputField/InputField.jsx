@@ -8,7 +8,7 @@ function InputField( { label, name, id, type, value, changeHandler } ) {
                 id={id}
                 type={type}
                 value={value}
-                onChange={(e) => changeHandler(e.target.value)}
+                onChange={changeHandler}
             />
         </>
     )
