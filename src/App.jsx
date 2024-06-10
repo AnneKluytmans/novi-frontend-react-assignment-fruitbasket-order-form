@@ -49,22 +49,10 @@ function App() {
         <h1>Fruitmand bezorgservice</h1>
         <section className="outer-content__container fruit-counter__section">
             <h3>Vul je fruitmand:</h3>
-            <article className="fruit-counter">
-                <h2>🍌 Bananen</h2>
-                <FruitCounter fruit={bananas} setFruit={setBananas}/>
-            </article>
-            <article className="fruit-counter">
-                <h2>🍓 Aardbeien</h2>
-                <FruitCounter fruit={strawberries} setFruit={setStrawberries}/>
-            </article>
-            <article className="fruit-counter">
-                <h2>🍏 Appels</h2>
-                <FruitCounter fruit={apples} setFruit={setApples}/>
-            </article>
-            <article className="fruit-counter">
-                <h2>🥝 Kiwi's</h2>
-                <FruitCounter fruit={kiwis} setFruit={setKiwis}/>
-            </article>
+            <FruitCounter label="🍌 Bananen" fruit={bananas} setFruit={setBananas}/>
+            <FruitCounter label="🍓 Aardbeien" fruit={strawberries} setFruit={setStrawberries}/>
+            <FruitCounter label="🍏 Appels" fruit={apples} setFruit={setApples}/>
+            <FruitCounter label="🥝 Kiwi's" fruit={kiwis} setFruit={setKiwis}/>
             <Button type="button" clickHandler={resetFruits} className="button button__default" text="Reset"/>
         </section>
 
